@@ -1,17 +1,9 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import TeamsPart from "./TeamsPart";
 
 const Home = () => {
   return (
-    <Typography
-      variant="h6"
-      component="h2"
-      sx={{
-        mb: 3,
-      }}
-    >
-      Teams you are a part of:
-    </Typography>
+    <TeamsPart/>
   );
 };
 
