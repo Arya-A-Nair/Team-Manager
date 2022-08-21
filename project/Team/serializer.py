@@ -11,7 +11,7 @@ class TeamDataSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Team
-        fields = ['name','code','members','created_at']
+        fields = ['name','members','created_at','id']
 
 class TaskSerializer(serializers.ModelSerializer):
     assigned_to=serializers.CharField(source='assigned_to.username')

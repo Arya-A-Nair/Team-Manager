@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import getCommonOptions from "../../helpers/getCommonOptions";
-import { Typography, Box, Paper } from "@mui/material";
+import { Typography, Box, Paper,useTheme } from "@mui/material";
 import TaskAssigned from "./TaskAssigned";
 import useRequestTeam from "../../hooks/useRequestTeam";
 import TaskTeam from './TaskTeam'
 
 const Team = () => {
+	const theme=useTheme()
 	const {getTeamData}=useRequestTeam()
 	const { id } = useParams();
 	const [teamData, setTeamData] = useState({
@@ -23,14 +24,16 @@ const Team = () => {
 	return (
 		<>
 			<Paper
-				variant="outlined"
+				elevation={6}
 				sx={{
-					bgcolor: "#121212",
+					bgcolor:theme.palette.primary.main,
 					paddingTop: "10vh",
 					paddingBottom: "10vh",
 					paddingRight: "2vw",
 					paddingLeft: "2vw",
+					borderRadius:5
 				}}
+				
 			>
 				<Box
 					sx={{
@@ -38,6 +41,7 @@ const Team = () => {
 						flexDirection: "row",
 						justifyContent: "space-between",
 						alignItems: "center",
+						flexWrap:'wrap'
 					}}
 				>
 					<Typography
@@ -54,7 +58,7 @@ const Team = () => {
 							color: "white",
 						}}
 					>
-						Code- {teamData.code}
+						Code- {teamData.id}
 					</Typography>
 				</Box>
 			</Paper>
