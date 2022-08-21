@@ -7,6 +7,7 @@ import { SnackbarProvider } from "notistack";
 import { RequireNotAuth } from "./helpers/RequireNotAuth";
 import SignUp from "./pages/Auth/SignUp";
 import BaseLayout from "./components/BaseLayout";
+import Team from './pages/Team'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route element={<RequireAuth />}>
                 <Route element={<BaseLayout />}>
                   <Route path="/" element={<Home />} />
+                  <Route path='/team/:id' element={<Team/>}/>
                 </Route>
               </Route>
               <Route element={<RequireNotAuth />}>

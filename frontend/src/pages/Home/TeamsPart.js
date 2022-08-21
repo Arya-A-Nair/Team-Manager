@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Card, CardContent, Box } from "@mui/material";
+import { Typography,  Box } from "@mui/material";
+
+import Masonry from "react-masonry-css";
 import axios from "axios";
 import getCommonOptions from "../../helpers/getCommonOptions";
+import "../../index.css";
+import TeamsList from "./TeamsList";
+
+const breakpoints = {
+  default: 3,
+  1100: 2,
+  700: 1,
+};
 
 const TeamsPart = () => {
   const [teamsList, setTeamsList] = useState([]);
@@ -28,23 +38,20 @@ const TeamsPart = () => {
       >
         Teams you are a part of:
       </Typography>
-      <Box sx={{
-        display:"flex",
-        flexDirection:"row"
-      }}>
-        {teamsList.map((data) => {
-          return (
-            <Card sx={{
-              width:"20vw",
-              marginRight :"5vw"
-
-            }} key={data.id}>
-              <CardContent>
-                <Typography>{data.name}</Typography>
-              </CardContent>
-            </Card>
-          );
-        })}
+      <Box>
+        <Masonry
+          breakpointCols={breakpoints}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {teamsList.map((data) => {
+            return (
+              <div key={data.id}>
+                <TeamsList data={data}/>
+              </div>
+            );
+          })}
+        </Masonry>
       </Box>
     </>
   );
