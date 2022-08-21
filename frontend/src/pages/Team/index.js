@@ -3,8 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import getCommonOptions from "../../helpers/getCommonOptions";
 import { Typography, Box, Paper } from "@mui/material";
+import TaskAssigned from "./TaskAssigned";
+import useRequestTeam from "../../hooks/useRequestTeam";
+import TaskTeam from './TaskTeam'
 
 const Team = () => {
+	const {getTeamData}=useRequestTeam()
 	const { id } = useParams();
 	const [teamData, setTeamData] = useState({
 		name: "",
@@ -13,15 +17,7 @@ const Team = () => {
 	});
 
 	useEffect(() => {
-		axios
-			.post("/team/getTeamData/", { team_id: id }, getCommonOptions())
-			.then((res) => {
-				console.log(res);
-				setTeamData(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		getTeamData(id,setTeamData)
 	}, []);
 
 	return (
@@ -62,6 +58,8 @@ const Team = () => {
 					</Typography>
 				</Box>
 			</Paper>
+			<TaskAssigned id={id}/>
+			<TaskTeam id={id}/>
 		</>
 	);
 };

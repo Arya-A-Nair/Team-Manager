@@ -23,6 +23,8 @@ class Task(models.Model):
         MEDIUM=2,"Medium"
         HIGH=3,"High"
         Critical=4,"Critical"
+    
+
 
     name=models.CharField(max_length=200)
     assigned_to=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -31,3 +33,6 @@ class Task(models.Model):
     deadline=models.DateField()
     completed=models.BooleanField(default=False)
     Team=models.ForeignKey(Team,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
