@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes, api_view
 
 from rest_framework.response import Response
-from .serializer import TeamListSerializer, TeamDataSerializer, TaskSerializer
+from .serializer import TeamListSerializer, TeamDataSerializer, TaskSerializer, TeamMemberSerializer
 from django.contrib.auth import get_user_model
 
 User=get_user_model()
@@ -93,6 +93,24 @@ def joinTeam(request):
     team.members.add(member)
     team.save()
     return Response()
+
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def getMembers(request):
+    print(request.data)
+    team=Team.objects.get(id=request.data['team_id'])
+    serializer=TeamDataSerializer(team)
+    members=serializer.data['members']
+    result=[]
+    for member in members:
+        user=User.objects.get(id=member)
+        result.append({
+            'username':user.username,
+            'email':user.email,
+        })
+
+    return Response(result)
+
     
 
 

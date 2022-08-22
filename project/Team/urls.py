@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.urls import path
 
-from .views import TeamsPartList, getTeamData,getTaskAssigned,updateComplete, getTasks,createTeam, getTeamPartData, joinTeam
+from .views import TeamsPartList, getTeamData,getTaskAssigned,updateComplete, getTasks,createTeam, getTeamPartData, joinTeam, getMembers
 
 router = routers.DefaultRouter()
 # router.register('part', TeamsPartList)
@@ -14,4 +14,5 @@ urlpatterns += [
     path('getTasks/', getTasks),
     path('createTeam/', createTeam),
     path('joinTeam/', joinTeam),
+    path('getMembers/', getMembers),
 ]

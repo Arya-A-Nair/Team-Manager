@@ -6,6 +6,7 @@ import { Typography, Box, Paper,useTheme } from "@mui/material";
 import TaskAssigned from "./TaskAssigned";
 import useRequestTeam from "../../hooks/useRequestTeam";
 import TaskTeam from './TaskTeam'
+import TeamMember from "./TeamMember";
 
 const Team = () => {
 	const theme=useTheme()
@@ -64,6 +65,7 @@ const Team = () => {
 			</Paper>
 			<TaskAssigned id={id}/>
 			<TaskTeam id={id}/>
+			<TeamMember id={id}/>
 		</>
 	);
 };

@@ -5,8 +5,7 @@ import { useSnackbar } from "notistack";
 import formatHttpApiError from "../helpers/formatHttpAPIError";
 
 export default function useRequestTeam() {
-  const {enqueueSnackbar}=useSnackbar()
-
+	const { enqueueSnackbar } = useSnackbar();
 
 	const handleError = useCallback(
 		(err) => {
@@ -23,36 +22,48 @@ export default function useRequestTeam() {
 				setTeamData(res.data);
 			})
 			.catch((err) => {
-        handleError(err)
+				handleError(err);
 			});
 	}, []);
 
-  const getAssignedTasks=useCallback((id,successCallback)=>{
-    axios.post('/team/getTaskAssigned/',{team_id:id},getCommonOptions())
-	.then((res)=>{
-		successCallback(res.data)
-	})
-	.catch((err)=>{
-		handleError(err)
-		return []
-	})
-  })
+	const getAssignedTasks = useCallback((id, successCallback) => {
+		axios
+			.post("/team/getTaskAssigned/", { team_id: id }, getCommonOptions())
+			.then((res) => {
+				successCallback(res.data);
+			})
+			.catch((err) => {
+				handleError(err);
+				return [];
+			});
+	});
 
-  const getTasks=useCallback((id,successCallback)=>{
-    axios.post('/team/getTasks/',{team_id:id},getCommonOptions())
-	.then((res)=>{
-		successCallback(res.data)
-	})
-	.catch((err)=>{
-		handleError(err)
-		return []
-	})
-  })
+	const getTasks = useCallback((id, successCallback) => {
+		axios
+			.post("/team/getTasks/", { team_id: id }, getCommonOptions())
+			.then((res) => {
+				successCallback(res.data);
+			})
+			.catch((err) => {
+				handleError(err);
+				return [];
+			});
+	});
 
-  	
+	const getMembers = useCallback((id, successCallback) => {
+		axios.post("/team/getMembers/", { team_id: id }, getCommonOptions())
+		.then((res)=>{
+			successCallback(res.data)
+		})
+		.catch((err)=>{
+			handleError(err)
+		})
+	});
+
 	return {
 		getTeamData,
 		getAssignedTasks,
-		getTasks
+		getTasks,
+		getMembers
 	};
 }
