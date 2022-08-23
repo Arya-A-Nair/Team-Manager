@@ -30,7 +30,7 @@ const TeamsPart = () => {
   return (
     <>
       <Typography
-        variant="h6"
+        variant="h4"
         component="h2"
         sx={{
           mb: 3,
@@ -39,11 +39,13 @@ const TeamsPart = () => {
         Teams you are a part of:
       </Typography>
       <Box>
+      {teamsList.length ?(
         <Masonry
           breakpointCols={breakpoints}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
+        
           {teamsList.map((data) => {
             return (
               <div key={data.id}>
@@ -52,6 +54,8 @@ const TeamsPart = () => {
             );
           })}
         </Masonry>
+      ):<Typography>You haven't joined any teams</Typography>}
+        
       </Box>
     </>
   );

@@ -89,10 +89,14 @@ def createTeam(request):
 def joinTeam(request):
     user=request.user
     member=User.objects.get(id=user.id)
-    team=Team.objects.get(id=request.data['team_id'])
-    team.members.add(member)
-    team.save()
-    return Response()
+    try:
+        team=Team.objects.get(id=request.data['team_id'])
+        team.members.add(member)
+        team.save()
+        return Response({"message":"You have successfully joined the team"})
+    except:
+        return Response({"Error":"Team does not exist"},status=401)
+    
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))

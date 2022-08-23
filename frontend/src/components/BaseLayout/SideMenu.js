@@ -8,6 +8,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import CreateIcon from '@mui/icons-material/Create';
 
 import { NavLink } from "react-router-dom";
 
@@ -23,6 +24,12 @@ const listItems = [
         name:"Dashboard",
         icon:<DashboardIcon/>
     },
+    {
+        key:"createTeam",
+        to:"/",
+        name:"Create Team",
+        icon:<CreateIcon/>
+    }
 ];
 
 const SidebarGlobalStyles = () => {

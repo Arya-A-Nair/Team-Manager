@@ -13,7 +13,7 @@ urlpatterns += [
     path('updateComplete/', updateComplete),
     path('getTasks/', getTasks),
     path('createTeam/', createTeam),
-    path('joinTeam/', joinTeam),
+    path('joinTeamCode/', joinTeam),
     path('getMembers/', getMembers),
     path('createTask/', createTask),
 ]

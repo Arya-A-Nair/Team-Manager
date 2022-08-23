@@ -60,10 +60,20 @@ export default function useRequestTeam() {
 		})
 	});
 
+	const joinTeam=useCallback((code)=>{
+		console.log(code)
+		axios.post("/team/joinTeamCode/",{team_id:code},getCommonOptions())
+		.then((res)=>{
+		})
+		.catch((err)=>{
+			handleError(err)
+		})
+	})
 	return {
 		getTeamData,
 		getAssignedTasks,
 		getTasks,
-		getMembers
+		getMembers,
+		joinTeam
 	};
 }
