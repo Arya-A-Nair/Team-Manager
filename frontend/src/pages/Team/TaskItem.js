@@ -29,10 +29,12 @@ export default function TaskItem({ data }) {
 	return (
 		<Card
 			sx={{
-				width: "20vw",
+				maxWidth:350,
 				// textAlign:"center",
 				borderLeft: `2em solid ${priorityColor[data.priority]}`,
 				borderRadius: 5,
+				marginTop:2.5
+
 			}}
 		>
 			<CardActionArea>
