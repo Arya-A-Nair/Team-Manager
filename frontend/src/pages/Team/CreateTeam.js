@@ -31,7 +31,7 @@ export default function CreateTeam() {
 			}}
 		>
 			<Typography variant="h6" mb={4}>
-				Create Task
+				Create Team
 			</Typography>
 			<Formik
 				initialValues={initialValues}
