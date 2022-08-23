@@ -13,9 +13,7 @@ const breakpoints = {
 export default function TaskAssigned({ id }) {
 	const theme = useTheme();
 	const [taskList, setTaskList] = useState([
-		{
-			name: "arya",
-		},
+		
 	]);
 	const { getTasks } = useRequestTeam();
 

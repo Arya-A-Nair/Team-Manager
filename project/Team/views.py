@@ -82,7 +82,7 @@ def createTeam(request):
     team=Team.objects.create(name=request.data['name'],created_by=request.user)
     team.members.add(member)
     team.save()
-    return Response()
+    return Response({'id':team.id})
 
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))

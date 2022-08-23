@@ -26,7 +26,7 @@ const listItems = [
     },
     {
         key:"createTeam",
-        to:"/",
+        to:"/createTeam",
         name:"Create Team",
         icon:<CreateIcon/>
     }

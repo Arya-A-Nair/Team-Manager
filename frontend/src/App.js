@@ -10,6 +10,7 @@ import BaseLayout from "./components/BaseLayout";
 import Team from "./pages/Team";
 import { CssBaseline } from "@mui/material";
 import TaskCreate from "./pages/Task/TaskCreate";
+import CreateTeam from './pages/Team/CreateTeam'
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 										<Route path="/" element={<Home />} />
 										<Route path="/team/:id" element={<Team />} />
 										<Route path="/team/:id/create" element={<TaskCreate/>}/>
+										<Route path="/createTeam" element={<CreateTeam/>}/>
 									</Route>
 								</Route>
 								<Route element={<RequireNotAuth />}>

@@ -13,9 +13,7 @@ const breakpoints = {
 export default function TaskAssigned({ id }) {
 	const theme=useTheme()
 	const [taskList, setTaskList] = useState([
-		{
-			name: "arya",
-		},
+		
 	]);
 	const { getAssignedTasks } = useRequestTeam();
 
@@ -51,7 +49,7 @@ export default function TaskAssigned({ id }) {
 					className="my-masonry-grid"
 					columnClassName="my-masonry-grid_column"
 				>
-					{taskList.map((data) => {
+					{taskList.map((data,index) => {
 						return <TaskItem data={data} key={data.id} />;
 					})}
 				</Masonry>

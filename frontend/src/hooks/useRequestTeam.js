@@ -15,16 +15,19 @@ export default function useRequestTeam() {
 		[enqueueSnackbar]
 	);
 
-	const getTeamData = useCallback((id, setTeamData) => {
-		axios
-			.post("/team/getTeamData/", { team_id: id }, getCommonOptions())
-			.then((res) => {
-				setTeamData(res.data);
-			})
-			.catch((err) => {
-				handleError(err);
-			});
-	}, []);
+	const getTeamData = useCallback(
+		(id, setTeamData) => {
+			axios
+				.post("/team/getTeamData/", { team_id: id }, getCommonOptions())
+				.then((res) => {
+					setTeamData(res.data);
+				})
+				.catch((err) => {
+					handleError(err);
+				});
+		},
+		[getCommonOptions,handleError]
+	);
 
 	const getAssignedTasks = useCallback((id, successCallback) => {
 		axios
@@ -36,7 +39,7 @@ export default function useRequestTeam() {
 				handleError(err);
 				return [];
 			});
-	});
+	}, [getCommonOptions,handleError]);
 
 	const getTasks = useCallback((id, successCallback) => {
 		axios
@@ -48,32 +51,53 @@ export default function useRequestTeam() {
 				handleError(err);
 				return [];
 			});
-	});
+	}, [handleError,getCommonOptions]);
 
-	const getMembers = useCallback((id, successCallback) => {
-		axios.post("/team/getMembers/", { team_id: id }, getCommonOptions())
-		.then((res)=>{
-			successCallback(res.data)
-		})
-		.catch((err)=>{
-			handleError(err)
-		})
-	});
+	const getMembers = useCallback(
+		(id, successCallback) => {
+			axios
+				.post("/team/getMembers/", { team_id: id }, getCommonOptions())
+				.then((res) => {
+					successCallback(res.data);
+				})
+				.catch((err) => {
+					handleError(err);
+				});
+		},
+		[getCommonOptions,handleError]
+	);
 
-	const joinTeam=useCallback((code)=>{
-		console.log(code)
-		axios.post("/team/joinTeamCode/",{team_id:code},getCommonOptions())
-		.then((res)=>{
-		})
-		.catch((err)=>{
-			handleError(err)
-		})
-	})
+	const joinTeam = useCallback(
+		(code) => {
+			axios
+				.post("/team/joinTeamCode/", { team_id: code }, getCommonOptions())
+				.then((res) => {})
+				.catch((err) => {
+					handleError(err);
+				});
+		},
+		[getCommonOptions,handleError]
+	);
+
+	const createTeam = useCallback(
+		(name, successCallback) => {
+			axios
+				.post("/team/createTeam/", { name }, getCommonOptions())
+				.then((res) => {
+					successCallback(res.data["id"]);
+				})
+				.catch((err) => {
+					handleError(err);
+				});
+		},
+		[getCommonOptions,handleError]
+	);
 	return {
 		getTeamData,
 		getAssignedTasks,
 		getTasks,
 		getMembers,
-		joinTeam
+		joinTeam,
+		createTeam,
 	};
 }
