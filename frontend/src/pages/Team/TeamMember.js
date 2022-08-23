@@ -19,7 +19,7 @@ export default function TeamMember({ id }) {
             setMember(res)
         })
 
-    },[])
+    },[getMembers,setMember,id])
 
 	return (
 		<Box

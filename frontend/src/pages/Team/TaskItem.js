@@ -33,7 +33,8 @@ export default function TaskItem({ data }) {
 				// textAlign:"center",
 				borderLeft: `2em solid ${priorityColor[data.priority]}`,
 				borderRadius: 5,
-				marginTop:2.5
+				marginTop:2.5,
+				marginBottom:2.5
 
 			}}
 		>

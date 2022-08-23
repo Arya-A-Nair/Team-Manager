@@ -21,7 +21,7 @@ export default function TaskAssigned({ id }) {
 		getTasks(id, (res) => {
 			setTaskList(res);
 		});
-	}, []);
+	}, [getTasks,setTaskList,id]);
 
 	return (
 		<Box

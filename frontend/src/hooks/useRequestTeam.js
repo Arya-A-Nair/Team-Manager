@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import axios from "axios";
 import getCommonOptions from "../helpers/getCommonOptions";
 import { useSnackbar } from "notistack";
@@ -26,7 +26,7 @@ export default function useRequestTeam() {
 					handleError(err);
 				});
 		},
-		[getCommonOptions,handleError]
+		[handleError]
 	);
 
 	const getAssignedTasks = useCallback((id, successCallback) => {
@@ -39,7 +39,7 @@ export default function useRequestTeam() {
 				handleError(err);
 				return [];
 			});
-	}, [getCommonOptions,handleError]);
+	}, [handleError]);
 
 	const getTasks = useCallback((id, successCallback) => {
 		axios
@@ -51,7 +51,7 @@ export default function useRequestTeam() {
 				handleError(err);
 				return [];
 			});
-	}, [handleError,getCommonOptions]);
+	}, [handleError]);
 
 	const getMembers = useCallback(
 		(id, successCallback) => {
@@ -64,7 +64,7 @@ export default function useRequestTeam() {
 					handleError(err);
 				});
 		},
-		[getCommonOptions,handleError]
+		[handleError]
 	);
 
 	const joinTeam = useCallback(
@@ -76,7 +76,7 @@ export default function useRequestTeam() {
 					handleError(err);
 				});
 		},
-		[getCommonOptions,handleError]
+		[handleError]
 	);
 
 	const createTeam = useCallback(
@@ -90,7 +90,7 @@ export default function useRequestTeam() {
 					handleError(err);
 				});
 		},
-		[getCommonOptions,handleError]
+		[handleError]
 	);
 	return {
 		getTeamData,
