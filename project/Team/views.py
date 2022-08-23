@@ -45,7 +45,7 @@ def getTeamData(request):
 def getTaskAssigned(request):
     team_id=request.data['team_id']
     team=Team.objects.get(id=team_id)
-    tasks=Task.objects.filter(Team=team, assigned_to=request.user).order_by('completed','priority')
+    tasks=Task.objects.filter(Team=team, assigned_to=request.user).order_by('completed','-priority','deadline')
     serializer=TaskSerializer(tasks,many=True)
     return Response(serializer.data)
 
@@ -67,7 +67,7 @@ def updateComplete(request):
 def getTasks(request):
     team_id=request.data['team_id']
     team=Team.objects.get(id=team_id)
-    tasks=Task.objects.filter(Team=team).order_by('completed','priority')
+    tasks=Task.objects.filter(Team=team).order_by('completed','-priority','deadline')
     serializer=TaskSerializer(tasks,many=True)
     if team.created_by==request.user or team.members.filter(id=request.user.id).exists():
         return Response(serializer.data)
