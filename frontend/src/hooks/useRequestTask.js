@@ -28,8 +28,19 @@ export default function useRequestTeam() {
 
     },[enqueueSnackbar,handleError])
 
+    const createTask=useCallback((data)=>{
+        axios.post('/team/createTask/',data,getCommonOptions())
+        .then((res)=>{
+            enqueueSnackbar("Task Created")
+        })
+        .catch((err)=>{
+            handleError(err)
+        })
+    })
+
 
     return {
-        updateComplete
+        updateComplete,
+        createTask
     }
 }

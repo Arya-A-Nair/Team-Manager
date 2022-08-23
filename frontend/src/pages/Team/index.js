@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import getCommonOptions from "../../helpers/getCommonOptions";
-import { Typography, Box, Paper,useTheme } from "@mui/material";
+import { Typography, Box, Paper, useTheme, Button } from "@mui/material";
 import TaskAssigned from "./TaskAssigned";
 import useRequestTeam from "../../hooks/useRequestTeam";
-import TaskTeam from './TaskTeam'
+import TaskTeam from "./TaskTeam";
 import TeamMember from "./TeamMember";
+import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
 
 const Team = () => {
-	const theme=useTheme()
-	const {getTeamData}=useRequestTeam()
+	const theme = useTheme();
+	const { getTeamData } = useRequestTeam();
 	const { id } = useParams();
 	const [teamData, setTeamData] = useState({
 		name: "",
@@ -19,22 +19,21 @@ const Team = () => {
 	});
 
 	useEffect(() => {
-		getTeamData(id,setTeamData)
-	}, []);
+		getTeamData(id, setTeamData);
+	}, [getTeamData]);
 
 	return (
 		<>
 			<Paper
 				elevation={6}
 				sx={{
-					bgcolor:theme.palette.primary.main,
+					bgcolor: theme.palette.primary.main,
 					paddingTop: "10vh",
 					paddingBottom: "10vh",
 					paddingRight: "2vw",
 					paddingLeft: "2vw",
-					borderRadius:5
+					borderRadius: 5,
 				}}
-				
 			>
 				<Box
 					sx={{
@@ -42,7 +41,7 @@ const Team = () => {
 						flexDirection: "row",
 						justifyContent: "space-between",
 						alignItems: "center",
-						flexWrap:'wrap'
+						flexWrap: "wrap",
 					}}
 				>
 					<Typography
@@ -63,9 +62,19 @@ const Team = () => {
 					</Typography>
 				</Box>
 			</Paper>
-			<TaskAssigned id={id}/>
-			<TaskTeam id={id}/>
-			<TeamMember id={id}/>
+				<Button
+					variant="contained"
+					sx={{
+						marginTop: "10vh",
+					}}
+					to={`create/`}
+					component={Link}
+				>
+					<AddIcon></AddIcon> Add Task
+				</Button>
+			<TaskAssigned id={id} />
+			<TaskTeam id={id} />
+			<TeamMember id={id} />
 		</>
 	);
 };

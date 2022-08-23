@@ -19,15 +19,5 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields='__all__'
 
-class MemberSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
-
-class TeamMemberSerializer(serializers.ModelSerializer):
-    members=MemberSerializer(many=True)
-    class Meta:
-        model = Team
-        fields=['name','members']
 
         

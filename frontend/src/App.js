@@ -9,6 +9,7 @@ import SignUp from "./pages/Auth/SignUp";
 import BaseLayout from "./components/BaseLayout";
 import Team from "./pages/Team";
 import { CssBaseline } from "@mui/material";
+import TaskCreate from "./pages/Task/TaskCreate";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 										
 										<Route path="/" element={<Home />} />
 										<Route path="/team/:id" element={<Team />} />
+										<Route path="/team/:id/create" element={<TaskCreate/>}/>
 									</Route>
 								</Route>
 								<Route element={<RequireNotAuth />}>

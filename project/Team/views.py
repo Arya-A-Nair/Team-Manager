@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes, api_view
 
 from rest_framework.response import Response
-from .serializer import TeamListSerializer, TeamDataSerializer, TaskSerializer, TeamMemberSerializer
+from .serializer import TeamListSerializer, TeamDataSerializer, TaskSerializer
 from django.contrib.auth import get_user_model
 
 User=get_user_model()
@@ -97,7 +97,6 @@ def joinTeam(request):
 @api_view(['POST'])
 @permission_classes((IsAuthenticated,))
 def getMembers(request):
-    print(request.data)
     team=Team.objects.get(id=request.data['team_id'])
     serializer=TeamDataSerializer(team)
     members=serializer.data['members']
@@ -107,10 +106,21 @@ def getMembers(request):
         result.append({
             'username':user.username,
             'email':user.email,
+            'id':user.id
         })
-
+    
     return Response(result)
 
+@api_view(['POST'])
+@permission_classes((IsAuthenticated,))
+def createTask(request):
+    team=Team.objects.get(id=request.data['team_id'])
+    if team.created_by==request.user or team.members.filter(id=request.user.id).exists():
+        assigned_to=User.objects.get(id=request.data['assigned_to'])
+        task=Task.objects.create(Team=team,name=request.data['name'],description=request.data['description'],assigned_to=assigned_to,priority=request.data['priority'],deadline=request.data['deadline'])
+        task.save()
+        return Response()
+    return Response({"Error":"You are not authorized to access this team"},status=401)
     
 
 
