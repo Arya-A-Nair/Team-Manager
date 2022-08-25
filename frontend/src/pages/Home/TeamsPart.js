@@ -36,7 +36,7 @@ const TeamsPart = () => {
           mb: 3,
         }}
       >
-        Teams you are a part of:
+        Your Teams
       </Typography>
       <Box>
       {teamsList.length ?(

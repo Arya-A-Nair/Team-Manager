@@ -9,30 +9,36 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import useRequestTeam from "../../hooks/useRequestTeam";
+import AddIcon from "@mui/icons-material/Add";
+import Fab from "@mui/material/Fab";
 
 const Home = () => {
 	const [openModal, setOpenModal] = useState(false);
-	const {joinTeam}=useRequestTeam()
+	const { joinTeam } = useRequestTeam();
 
 	const handleSubmit = (values) => {
-		joinTeam(values['code'])
-		window.location.reload()
+		joinTeam(values["code"]);
+		window.location.reload();
 	};
 
 	return (
 		<>
-			<Button
-				variant="contained"
+			<Fab
+				color="primary"
+				aria-label="add"
 				sx={{
-					width: "10vw",
-					marginBottom: "5vh",
+					position: "absolute",
+					bottom: "10vh",
+					right: "10vw",
+					scale:"150%"
 				}}
 				onClick={() => {
 					setOpenModal(!openModal);
 				}}
 			>
-				Join Team
-			</Button>
+
+				<AddIcon />
+			</Fab>
 
 			<Dialog open={openModal}>
 				<Formik
