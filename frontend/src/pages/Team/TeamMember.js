@@ -13,13 +13,12 @@ const breakpoints = {
 export default function TeamMember({ id }) {
 	const theme = useTheme();
 	const [members, setMember] = useState([]);
-    const {getMembers}=useRequestTeam();
-    useEffect(()=>{
-        getMembers(id,(res)=>{
-            setMember(res)
-        })
-
-    },[getMembers,setMember,id])
+	const { getMembers } = useRequestTeam();
+	useEffect(() => {
+		getMembers(id, (res) => {
+			setMember(res);
+		});
+	}, [getMembers, setMember, id]);
 
 	return (
 		<Box
@@ -49,10 +48,8 @@ export default function TeamMember({ id }) {
 						className="my-masonry-grid"
 						columnClassName="my-masonry-grid_column"
 					>
-						{members.map((data,index) => {
-							return (
-                                <MemberItem data={data} key={index}/>
-                            )
+						{members.map((data, index) => {
+							return <MemberItem data={data} key={index} />;
 						})}
 					</Masonry>
 				</Paper>

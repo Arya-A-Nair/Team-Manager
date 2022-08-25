@@ -14,6 +14,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import {LoadingButton} from '@mui/lab'
 import { useNavigate } from "react-router-dom";
+import NissanGTR from '../../assets/nissanGTR.jpg'
 
 const validationSchema = yup.object({
   username: yup.string().required("Username is required"),
@@ -41,8 +42,6 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage:
-              "url(https://www.pixel4k.com/wp-content/uploads/2020/10/red-nissan-gtr-r34-4k_1602451220.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -51,7 +50,11 @@ export default function SignInSide() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-        />
+        >
+          <img src={NissanGTR} alt="wow" style={{
+            height:"100vh"
+          }}/>
+        </Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
