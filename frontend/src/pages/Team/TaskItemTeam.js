@@ -21,7 +21,6 @@ const priorityColor = {
 export default function TaskItem({ data }) {
 	const { updateComplete } = useRequestTask();
 
-	console.log(data);
 	const handleUpdateComplete = () => {
 		updateComplete(data.id);
 		window.location.reload();

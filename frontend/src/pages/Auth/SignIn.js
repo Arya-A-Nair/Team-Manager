@@ -14,7 +14,6 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import {LoadingButton} from '@mui/lab'
 import { useNavigate } from "react-router-dom";
-import NissanGTR from '../../assets/nissanGTR.jpg'
 
 const validationSchema = yup.object({
   username: yup.string().required("Username is required"),
@@ -34,7 +33,7 @@ export default function SignInSide() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
           item
@@ -42,19 +41,14 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundRepeat: "no-repeat",
+            backgroundImage: 'url(https://www.motorward.com/wp-content/images/2014/07/LB-GTR-1.jpg)',
+            backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
-        >
-          <img src={NissanGTR} alt="wow" style={{
-            height:"100vh"
-          }}/>
-        </Grid>
+        />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
