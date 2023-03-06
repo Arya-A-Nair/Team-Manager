@@ -3,7 +3,7 @@
 
 This lets you create Teams in which you can assign tasks to various members of the team. On Completion user can click the checkbox. The tasks are ordered according to completetion and priority. Color Coding of the tasks are also done according to the priority level
 
-## Deployment- https://teamanagerarya.herokuapp.com/
+## Deployment- https://teamanagerarya.herokuapp.com/ (Currently down because of heroku Payment issues)
 
 
 
